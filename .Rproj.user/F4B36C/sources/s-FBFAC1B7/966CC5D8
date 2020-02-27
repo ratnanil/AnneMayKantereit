@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "172855980",
+    "hash" : "0",
     "id" : "966CC5D8",
-    "lastKnownWriteTime" : 1582818652,
-    "last_content_update" : 1582818652,
+    "lastKnownWriteTime" : 1582819489,
+    "last_content_update" : 1582819489275,
     "path" : "C:/Users/rata/Dropbox/AnneMayKantereit_Konzert/_bookdown.yml",
     "project_path" : "_bookdown.yml",
     "properties" : {
+        "cursorPosition" : "5,18",
+        "scrollLine" : "0"
     },
     "read_only" : false,
     "read_only_alternatives" : [
