@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582818656263.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2828643962",
+    "id" : "C05C8ADD",
+    "lastKnownWriteTime" : 1582819147,
+    "last_content_update" : 1582819147539,
+    "path" : "C:/Users/rata/Dropbox/AnneMayKantereit_Konzert/_output.yml",
+    "project_path" : "_output.yml",
+    "properties" : {
+        "cursorPosition" : "2,9",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "yaml"
+}

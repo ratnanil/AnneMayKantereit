@@ -1,0 +1,66 @@
+library(rvest)
+
+library(httr)
+
+library(tidyverse)
+
+nested <- read_html("https://www.songtexte.com/artist/annenmaykantereit-33db8c65.html") %>%
+  html_nodes(".nested")
+
+
+ti <- tibble(songname = str_remove_all(html_text(nested),"\n"),href = paste0("https://www.songtexte.com",str_sub(html_attr(nested,"href"),3,-1))) 
+
+
+
+ti <- ti %>%
+  mutate(header = str_detect(href,"album"),
+         album = if_else(header,songname,NA_character_)) %>%
+  fill(album)
+
+
+
+
+ti2 <- ti %>%
+  # head(2) %>%
+  pmap_dfr(function(songname,href,header,album){
+    # fname <- str_remove("oft-gefragt-1b5b4510.html","\\.html")
+    if(header){
+      songtext <- NA_character_
+    } else{
+      songtext <- read_html(href) %>%
+        html_nodes("#lyrics") %>% 
+        xml2::xml_contents() %>% 
+        html_text() %>%
+        str_replace_all("\n","")
+      
+      songtext[songtext == ""] <- "  \n"
+      songtext <- paste(songtext, collapse = "")
+      # html_text()
+    }
+    
+    tibble(songname = songname, href = href, header = header, album = album, songtext = songtext)
+  })
+
+# ti2$idx <- NULL
+ti2 <- rownames_to_column(ti2,"idx") %>%  mutate(idx = str_pad(idx,2,pad = "0"))
+
+ti2 %>%
+  pmap(function(idx, songname,href,header,album,songtext){
+    # dir_i <- str_replace_all(tolower(album),"\\s","_")
+    # dir.create(dir_i,showWarnings = FALSE)
+    
+    fname <- paste0(idx,"_",basename(str_remove(href,"\\.html")),".Rmd")
+    fname
+    fileconn <- file(paste(fname,sep = "/"),encoding = "UTF-8")
+    if(header){
+      writeLines(c(paste("#",songname),""),fileconn)
+    } else{
+      # songtext <- enc2utf8(songtext)
+      writeLines(c(paste("##",songname),"",songtext),fileconn)
+    }
+    close(fileconn)
+  })
+
+
+
+
