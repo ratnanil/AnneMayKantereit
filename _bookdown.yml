@@ -2,5 +2,5 @@ book_filename: "AnneMayKantereit_Konzert"
 delete_merged_file: true
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Album "
 output_dir: "docs"
